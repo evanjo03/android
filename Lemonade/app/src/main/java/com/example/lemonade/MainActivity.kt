@@ -1,11 +1,8 @@
 package com.example.lemonade
 
-import android.content.res.Resources.Theme
 import android.os.Bundle
-import android.widget.ImageButton
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -18,21 +15,21 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.example.lemonade.ui.theme.LemonadeTheme
 
@@ -72,7 +69,10 @@ fun Header() {
             .padding(8.dp),
         contentAlignment = Alignment.Center
     ) {
-        Text("Lemonade", fontWeight = FontWeight(700))
+        Text(
+            stringResource(R.string.lemonade),
+            fontWeight = FontWeight(700),
+        )
     }
 }
 
@@ -96,10 +96,10 @@ fun LemonContent() {
         Image(
             modifier = Modifier.clickable { updateStep() },
             painter = painterResource(id = image),
-            contentDescription = alt
+            contentDescription = "$alt"
         )
         Spacer(modifier = Modifier.height(24.dp))
-        Text(text)
+        Text("$text")
     }
 }
 
@@ -112,20 +112,20 @@ fun getStepImage(step: Int): Int {
     }
 }
 
-fun getStepAlt(step: Int): String {
+fun getStepAlt(step: Int): Int {
     return when (step) {
-        0 -> "lemon tree"
-        1 -> "lemon squeeze"
-        2 -> "lemon drink"
-        else -> "lemon restart"
+        0 -> R.string.lemon_tree
+        1 -> R.string.lemon_squeeze
+        2 -> R.string.lemon_drink
+        else -> R.string.lemon_restart
     }
 }
 
-fun getStepText(step: Int): String {
+fun getStepText(step: Int): Int {
     return when (step) {
-        0 -> "Tap the lemon tree to select a lemon"
-        1 -> "Keep tapping the lemon to squeeze it"
-        2 -> "Tap the lemonade to drink it"
-        else -> "Tap the empty glass to start again"
+        0 -> R.string.tap_the_lemon_tree_to_select_a_lemon
+        1 -> R.string.keep_tapping_the_lemon_to_squeeze_it
+        2 -> R.string.tap_the_lemonade_to_drink_it
+        else -> R.string.tap_the_empty_glass_to_start_again
     }
 }
